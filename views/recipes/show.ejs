@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Page </title>
+    <link rel="stylesheet" href="/stylesheet/style.css">
+
+</head>
+<body>
+    <h1><%= resipe.title %> at <%= resipe.title %></h1>
+    <% if( recipe.ingrediac) { %>
+    <p>Notes: <%= recipe.notes %></p>
+    <% } %> <% if( resipe.postingLink) { %>
+   <%- include('../partials/_navbar.ejs') %> 
+   <a href="/users/<%= user._id %>/recipes/<%= recipe._id %>/edit"
+    >Edit</a
+  >
+
+  <form
+    action="/users/<%= user._id %>/recipes/<%= resipe._id %>?_method=DELETE"
+    method="POST"
+  >
+    <button type="submit">Delete this resipe</button>
+  </form>
+
+</body>
+</html>

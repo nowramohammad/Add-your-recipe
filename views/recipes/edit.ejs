@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Recipe</title>
+    <link rel="stylesheet" href="/stylesheet/style.css">
+</head>
+<body>
+    <%- include('../partials/_navbar.ejs') %>
+    <h1>Edit Recipe</h1>
+    <form action="/users/<%= user._id %>/recipe/<%= recipe._id %>/?_method=PUT" method="POST"></form>
+    <label for="title">Title</label>
+    <input type="text" name="title" id="title" value="<%= recipes.title %>"/>
+    <label for="ingrediac">Ingrediac</label>
+    <inpyt type="text" name ="ingrediac" id="ingrediac" value="<%= recipes.ingrediac %>"/>
+    <label for="stepstomake">Steps TO Make</label>
+    <inpu type="text" name="stepstomake" id="stepstomake" value="<%= recipes.stepstomake %>" />
+        <label for="postingLink">Posting Link:</label>
+        <input type="text" name="postingLink" id="postingLink" value="<%= resipes.postingLink %>"/>
+  
+        <label for="notes">Notes</label>
+        <textarea type="text" name="notes" id="notes">
+          <%= resipes.notes %>    
+      </textarea>
+      <button type="submit">Edit Recipe</button>
+</body>
+</html>

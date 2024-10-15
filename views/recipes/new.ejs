@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add new Recipe</title>
+    <link rel="stylesheet" href="/stylesheet/style.css">
+
+</head>
+<body>
+    <%- include('../partials/_navbar.ejs') %>
+    <h1>Add a new App</h1>
+    <form action="/users/<%= user._id %>/resipes" method="POST">
+      <label for="company">Title</label>
+      <input type="text" name="title" id="title" />
+
+      <label for="ingrediac">Ingrediac</label>
+      <input type="text" name="ingrediac" id="ingrediac" />
+      <label for="postingLink">Posting Link:</label>
+      <input type="text" name="postingLink" id="postingLink" />
+
+      <label for="notes">Notes</label>
+      <textarea type="text" name="notes" id="notes"> </textarea>
+      <button type="submit">Add Application</button>
+    </form>
+</body>
+</html>

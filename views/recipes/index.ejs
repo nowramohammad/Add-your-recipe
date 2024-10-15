@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Recipes</title>
+    <link rel="stylesheet" href="/stylesheet/style.css"/> 
+</head>
+<body>
+    <%- include('../partials/_navbar.ejs') %>
+    <h1>Your Recipes</h1>
+    <a herf="/users/<%= user._id %>/recipes/new">Add a Recipe </a>
+    <ul>
+        <% recipes.forEach((recipe) => { %>
+       <li>
+        <a herf="/users/<%= user._id %>/recipes/<%= recipe._id%>">
+           <p>
+            <%= `${recipe.title} at ${ recipe.ingrediac} at ${recipe.stepstomake}` %> - <%=
+            recipe.stepstomake%>
+           </p> 
+        </a>
+       </li> 
+    <% } ) %>
+    </ul>
+</body>
+</html>

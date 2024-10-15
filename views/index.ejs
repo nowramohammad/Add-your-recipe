@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Recipes</title>
+    <link rel="stylesheet" herf="/stylesheet/style.css">
+
+</head>
+<body>
+    <%- include('./partials/_navbar.ejs') %>
+    <%if (user) { %>
+        <h1>Welcome, <%= user.username %></h1>
+      <% } %><h1>Your Recipes</h1>
+      <p>A job application tracker.</p>
+    <a href="/auth/sign-up">Sign up</a>
+    <a href="/auth/sign-in">Sign in</a>
+</body>
+</html>
