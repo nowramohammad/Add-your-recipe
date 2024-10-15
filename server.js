@@ -8,7 +8,7 @@ const morgan = require("morgan");
 const session = require("express-session");
 const isSignedIn = require("./middleware/is-signed-in.js");
 const passUserToView = require("./middleware/pass-user-to-view.js");
-const applicationController = require("./controllers/recipes.js");
+const recipeController = require("./controllers/recipes.js");
 const path = require("path");
 
 
@@ -19,7 +19,7 @@ mongoose.connect(process.env.MONGODB_URI);
 mongoose.connection.on("connected", () => {
   console.log(`Connected to MongoDB ${mongoose.connection.name}.`);
 });
-app.use(express.static(path.join(_dirname,"piblic")));
+app.use(express.static(path.join(__dirname,"piblic")));
 app.use(express.urlencoded({ extended: false}));
 app.use(methodOverride("_method"));
 app.use(
@@ -33,7 +33,7 @@ app.use(
 app.use(passUserToView);
 app.get("/", (req, res) => {
     if (req.session.user) {
-        res.redirect(`/users/${req.sesstion.user._id}/recipes`);
+        res.redirect(`/users/${req.session.user._id}/recipes`);
         return;
     }
     res.render("index.ejs", {
