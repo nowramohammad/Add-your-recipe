@@ -4,24 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add new Recipe</title>
-    <link rel="stylesheet" href="/stylesheet/style.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
 
 </head>
 <body>
     <%- include('../partials/_navbar.ejs') %>
-    <h1>Add a new App</h1>
+    <h1>Add a new Recipe</h1>
     <form action="/users/<%= user._id %>/resipes" method="POST">
-      <label for="company">Title</label>
-      <input type="text" name="title" id="title" />
-
-      <label for="ingrediac">Ingrediac</label>
-      <input type="text" name="ingrediac" id="ingrediac" />
-      <label for="postingLink">Posting Link:</label>
-      <input type="text" name="postingLink" id="postingLink" />
-
-      <label for="notes">Notes</label>
-      <textarea type="text" name="notes" id="notes"> </textarea>
-      <button type="submit">Add Application</button>
-    </form>
+        <label for="company">Title</label>
+        <input type="text" name="title" id="title" />
+  
+        <label for="ingrediac">Ingrediac</label>
+        <input type="text" name="ingrediac" id="ingrediac" />
+        <label for="How to make">How to Make</label>
+        <input type="text" name="howtomake" id="howtomake" />
+  
+        <label for="notes">Notes</label>
+        <textarea type="text" name="notes" id="notes"> </textarea>
+        <button type="submit">Add Recipe</button>
+      </form>
 </body>
 </html>

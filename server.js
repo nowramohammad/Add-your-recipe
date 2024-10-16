@@ -11,6 +11,7 @@ const passUserToView = require("./middleware/pass-user-to-view.js");
 const recipeController = require("./controllers/recipes.js");
 const path = require("path");
 
+const authController = require("./controllers/auth.js");
 
 const port = process.env.PORT ? process.env.PORT : "3000";
 
@@ -31,15 +32,28 @@ app.use(
     })
 );
 app.use(passUserToView);
+
 app.get("/", (req, res) => {
     if (req.session.user) {
         res.redirect(`/users/${req.session.user._id}/recipes`);
         return;
     }
     res.render("index.ejs", {
-        user: req.sesstion.user,
+        user: req.session.user,
     })
 });
+/*app.get('/users/:id/recipes', async (req, res) => {
+    try {
+      const user = await User.findById(req.params.id);
+      const recipes = await Recipe.find({ userId: user._id }); // Assuming there's a relation
+  
+      res.render('your_template', { user, recipes }); // Pass both user and recipes
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Internal Server Error');
+    }
+  });*/
+  
 app.use("/auth", authController);
 app.use(isSignedIn);
 app.use("/users/:userId/recipes", recipeController);

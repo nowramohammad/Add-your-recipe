@@ -1,7 +1,12 @@
 const express = require("express");
 const router = express.Router();
 
+
+
 const User = require("../models/user.js");
+
+// 
+
 
 // router view pages index for login 
 router.get("/", async (req,res) => {
@@ -54,7 +59,7 @@ router.delete("/:recipeId", async (req, res) => {
   router.post("/", async (req, res) => {
     try {
         const currentUser = await User.findById(req.session.user._id);
-       currentUser.recipe.push(req.body);
+       currentUser.recipes.push(req.body);
        await currentUser.save();
        res.redirect(`/users/${req.session.user._id}/recipes`);
     
@@ -63,7 +68,7 @@ router.delete("/:recipeId", async (req, res) => {
         res.redirect("/");
     }
   });
-  
+
   // edit the recipe route
   router.get("/:recipeId/edit", async (req,res) => {
     const currentUser = await User.findById(req.session.user._id);

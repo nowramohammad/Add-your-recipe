@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const recipes = new mongoose.Schema({
+const recipeSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
@@ -10,8 +10,8 @@ const recipes = new mongoose.Schema({
         required: true,
     },
     notes: String,
-  postingLink: String,
-    stepstomake: {
+ 
+   howtomake: {
         type: String,
         required: true,
     }
@@ -28,6 +28,7 @@ const userSchema = new mongoose.Schema({
       required: true,
       unique: true
     },
+    recipes: [ recipeSchema ]
 });
 const User = mongoose.model("User", userSchema);
 
