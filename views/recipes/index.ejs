@@ -4,16 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Recipes</title>
-    <link rel="stylesheet" href="/stylesheets/style.css"/> 
+    <link rel="stylesheet" href="/stylesheet/style.css"/> 
 </head>
 <body>
+  <%- include('../partials/_navbar.ejs') %> 
     <a href="/users/<%= user._id %>/recipes/new">Add Your Recipe</a>
     <ul>
       <% if (recipes && recipes.length) { %>
         <% recipes.forEach((recipe) => { %>
           <li>
             <a href="/users/<%= user._id %>/recips/<%= recipe._id %>">
-              <p><%= recipe.name %></p> <!-- Display recipe name -->
+              <p><%= recipe.title %></p> <!-- Display recipe name -->
             </a>
           </li>
         <% }); %>

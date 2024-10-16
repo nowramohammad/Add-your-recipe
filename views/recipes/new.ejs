@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add new Recipe</title>
-    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheet/style.css">
 
 </head>
 <body>
     <%- include('../partials/_navbar.ejs') %>
     <h1>Add a new Recipe</h1>
     <form action="/users/<%= user._id %>/resipes" method="POST">
-        <label for="company">Title</label>
+        <label for="title">Title</label>
         <input type="text" name="title" id="title" />
   
         <label for="ingrediac">Ingrediac</label>

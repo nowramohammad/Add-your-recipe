@@ -4,15 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Show Page </title>
-    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheet/style.css">
 
 </head>
 <body>
-    <h1><%= resipe.title %> at <%= resipe.title %></h1>
-    <% if( recipe.ingrediac) { %>
-    <p>Notes: <%= recipe.notes %></p>
-    <% } %> <% if( resipe.postingLink) { %>
-   <%- include('../partials/_navbar.ejs') %> 
+  <%- include('../partials/_navbar.ejs') %> 
+  <h1><%= recipe.title %> at <%= recipe.ingrediac> at <%= recipe.instructions></h1>
+  <% if( recipe.notes) { %>
+  <p>Notes: <%= recipe.notes %></p>
+    
+   
    <a href="/users/<%= user._id %>/recipes/<%= recipe._id %>/edit"
     >Edit</a
   >
