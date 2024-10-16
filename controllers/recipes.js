@@ -45,7 +45,7 @@ router.delete("/:recipeId", async (req, res) => {
     try {
       const currentUser = await User.findById(req.session.user._id);
       
-      currentUser.applications.id(req.params.recipeIdId).deleteOne();
+      currentUser.recipes.id(req.params.recipeIdId).deleteOne();
       
       await currentUser.save();
   
@@ -56,10 +56,30 @@ router.delete("/:recipeId", async (req, res) => {
     }
   });
   // as the post route 
-  router.post("/", async (req, res) => {
+ /* router.post('/recipes/', async (req, res) => {
+    try {
+      const { title, ingredients, instructions } = req.body;
+  
+      const newRecipe = new Recipe({
+        title,
+        ingredients,
+        instructions,
+        userId: req.params.userId, // Link the recipe to the user
+      });
+  
+      await newRecipe.save(); // Save the recipe to the database
+      res.redirect(`/users/${req.params.userId}/recipes`); // Redirect to the user's recipe page
+    } catch (error) {
+      console.log (error);
+      res.redirect('/');
+    }
+  });
+*/
+
+  router.post("/recipes/:id", async (req, res) => {
     try {
         const currentUser = await User.findById(req.session.user._id);
-       currentUser.recipes.push(req.body);
+        currentUser.recipes.push(req.body);
        await currentUser.save();
        res.redirect(`/users/${req.session.user._id}/recipes`);
     
