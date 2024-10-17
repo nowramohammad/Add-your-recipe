@@ -57,9 +57,9 @@ router.delete("/:recipeId", async (req, res) => {
 router.post("/", async (req, res) => {
   try {
     const currentUser = await User.findById(req.session.user._id);
-    //req.body == all the user form data
+    //req.body == all recipe
     currentUser.recipes.push(req.body);
-    // save updated user w/ new application to db
+    
 
     await currentUser.save();
     res.redirect(`/users/${req.session.user._id}/recipes`);

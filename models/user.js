@@ -48,7 +48,7 @@ const userSchema = new mongoose.Schema({
       required: true,
       unique: true
     },
-    
+    recipes: [ recipeSchema ] 
 
 });
 const User = mongoose.model("User", userSchema);
