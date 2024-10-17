@@ -1,7 +1,28 @@
 * body{
-  background-image: url("/.images/IMG_1191.JPG");
+  background-image: url("../images/IMG_1198.JPG");
+  background-size: cover;
 }
-
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+}
+button {
+  background-color: rgb(232, 170, 191);
+  color: black;
+}
+p {
+  color: rgb(240, 25, 90);
+}
+h1{
+  color: darkcyan;
+  
+}
+@media (max-width: 500px){
+ body{
+  max-width: 200px;
+ }
+};
   /*body {
     font-family: Arial, sans-serif;
     background-color: #f9f9f9;
