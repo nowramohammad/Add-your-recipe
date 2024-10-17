@@ -42,6 +42,15 @@ app.get("/", (req, res) => {
         user: req.session.user,
     })
 });
+app.get('/recipes/:id', async (req, res) => {
+  try {
+      const recipe = await getRecipeById(req.params.id); // Fetch recipe asynchronously
+      res.render('recipes/show', { recipe }, { async: true });
+  } catch (error) {
+      res.status(500).send('Error occurred');
+  }
+});
+
 /*app.get('/users/:id/recipes', async (req, res) => {
     try {
       const user = await User.findById(req.params.id);

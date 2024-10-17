@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
   const user = await User.findById(req.session.user._id);
   const recipes = user.recipes;
   if (req.session.user) {
-    res.render("recipes/index.ejs", { recipes });
+    res.render("recipes/index.ejs", {  recipes });
   } else {
     res.render("index.ejs");
   }

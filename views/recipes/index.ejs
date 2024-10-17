@@ -11,17 +11,20 @@
     <h1>Your Recipes</h1>
     <a href="/users/<%= user._id %>/recipes/new">Add Recipe</a>
     <ul>
+      <% if (recipes && recipes.length) { %>
       <% recipes.forEach((recipe) => { %>
       <li>
-        <a href="/users/<%= user._id %>/recipes/<%= recipe._id%>">
-          <p>
-            <%= `${recipe.title}`%> 
-          </p>
-          </p>
+        <a href="/users/<%= user._id %>/recipes/<%= recipe._id %>">
+          <p><%= recipe.title %></p>
+
+          
             
         </a>
       </li>
-      <% }) %>
+      <% }); %>
+      <% } else { %> 
+      <li>No recipes available.</li>
+    <% } %> 
     </ul>
   </body>
 </html>

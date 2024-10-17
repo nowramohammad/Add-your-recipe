@@ -8,10 +8,10 @@
   </head>
   <body>
     <%- include('../partials/_navbar.ejs') %>
-    <h1><%= recipe.title %> at <%= recipe.ingrediace %></h1>
-    <% if( recipe. instructions) { %>
+    <h1><%= recipe.title %> at <%= recipe.ingrediace %> at <%= recipe.instructions %></h1>
+    <% if( recipe.notes) { %>
     <p>Notes: <%= recipe.notes %></p>
-    
+    <% } %> 
     <a href="/users/<%= user._id %>/recipes/<%= recipe._id %>/edit"
       >Edit</a
     >
