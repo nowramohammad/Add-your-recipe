@@ -11,14 +11,10 @@ const recipeSchema = new mongoose.Schema({
     },
     notes: String,
  
-   howtomake: {
+   instructions: {
         type: String,
         required: true,
     },
-    userId: { 
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'User', 
-        required: true },
 });
 
 const userSchema = new mongoose.Schema({

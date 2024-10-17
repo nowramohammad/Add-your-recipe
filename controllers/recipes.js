@@ -1,51 +1,50 @@
 const express = require("express");
 const router = express.Router();
-
+// import any models here
 const User = require("../models/user.js");
 
-router.get("/", async (req,res) => {
+// Index
+router.get("/", async (req, res) => {
+  
   const user = await User.findById(req.session.user._id);
   const recipes = user.recipes;
   if (req.session.user) {
-      res.render("recipes/index.ejs", { recipes});
+    res.render("recipes/index.ejs", { recipes });
   } else {
-      res.render("index.ejs");
+    res.render("index.ejs");
   }
-  /*router.get('/', async (req, res) =>{
-    const allUser = await User.find({})
-
-    res.render('recipes/index.ejs', { allUser }) // we will come back and add real post here soon
-})*/
-  
 });
-// router to the new page view
+
+// New
 router.get("/new", (req, res) => {
-  res.render("recipes/new.ejs")
+  res.render("recipes/new.ejs");
 });
-router.put("/recipesId", async (req,res) => {
-  try{
-      const currentUser = await User.findById(req.session.user._id);
-      const recipe = currentUser.recipes.id(req.params.recipeId);
-      recipe.set(req.body);
-      await currentUser.save();
-      res.redirect(
-          `/users/${req.session.user._id}/recipes/${req.params.recipeId}`
 
-      );
+router.put("/:recipeId", async (req, res) => {
+  try {
+    const currentUser = await User.findById(req.session.user._id);
+    const recipe = currentUser.recipes.id(req.params.recipeId);
+    // call set on subdocument to update it
+    recipe.set(req.body);
 
-  }catch (error) {
-      console.log(error);
-      res.redirect("/")
+    await currentUser.save();
+    res.redirect(
+      `/users/${req.session.user._id}/recipes/${req.params.recipeId}`
+    );
+  } catch (error) {
+    console.log(error);
+    res.redirect("/");
   }
 });
 
-// delete the recipe route
+// Delete
+
 router.delete("/:recipeId", async (req, res) => {
   try {
     const currentUser = await User.findById(req.session.user._id);
-    
+    // find and delete application by application id
     currentUser.recipes.id(req.params.recipeId).deleteOne();
-    
+    // save updated user w/ deleted application to db
     await currentUser.save();
 
     res.redirect(`/users/${req.session.user._id}/recipes`);
@@ -54,50 +53,34 @@ router.delete("/:recipeId", async (req, res) => {
     res.redirect("/");
   }
 });
-// as the post route 
-/* router.post('/recipes/', async (req, res) => {
-  try {
-    const { title, ingredients, instructions } = req.body;
-
-    const newRecipe = new Recipe({
-      title,
-      ingredients,
-      instructions,
-      userId: req.params.userId, // Link the recipe to the user
-    });
-
-    await newRecipe.save(); // Save the recipe to the database
-    res.redirect(`/users/${req.params.userId}/recipes`); // Redirect to the user's recipe page
-  } catch (error) {
-    console.log (error);
-    res.redirect('/');
-  }
-});
-*/
 
 router.post("/", async (req, res) => {
   try {
-      const currentUser = await User.findById(req.session.user._id);
-      currentUser.recipes.push(req.body);
-     await currentUser.save();
-     res.redirect(`/users/${req.session.user._id}/recipes`);
-  
+    const currentUser = await User.findById(req.session.user._id);
+    //req.body == all the user form data
+    currentUser.recipes.push(req.body);
+    // save updated user w/ new application to db
+
+    await currentUser.save();
+    res.redirect(`/users/${req.session.user._id}/recipes`);
   } catch (error) {
-      console.log(error);
-      res.redirect("/");
+    console.log(error);
+    res.redirect("/");
   }
 });
-
-// edit the recipe route
-router.get("/:recipeId/edit", async (req,res) => {
+// Edit
+router.get("/:recipeId/edit", async (req, res) => {
   const currentUser = await User.findById(req.session.user._id);
-  const recipe = currentUser.recipes.id(reqparams.recipeId);
-  res.render("recipes/edit.ejs",{ recipe });
+  const recipe = currentUser.recipes.id(req.params.recipeId);
+  res.render("recipes/edit.ejs", { recipe });
 });
-// the show page in the view router
+
+//SHOW
 router.get("/:recipeId", async (req, res) => {
-  const currentUser= await User.findById(req.session.user._id);
-  const recipe = currentUser.recipes.id(req.params.recipeId)
-   res.render("recipes/show.ejs", {recipe});
+  const currentUser = await User.findById(req.session.user._id);
+  // .id is a mongoose method to find a subdocument by its id
+  const recipe = currentUser.recipes.id(req.params.recipeId);
+
+  res.render("recipes/show.ejs", { recipe });
 });
-module.exports = router; 
+module.exports = router;

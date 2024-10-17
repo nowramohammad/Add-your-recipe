@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Recipes</title>
-    <link rel="stylesheet" href="/stylesheet/style.css"/> 
-</head>
-<body>
-  <%- include('../partials/_navbar.ejs') %> 
-    <a href="/users/<%= user._id %>/recipes/new">Add Your Recipe</a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Recipe</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <%- include('../partials/_navbar.ejs') %>
+    <h1>Your Recipes</h1>
+    <a href="/users/<%= user._id %>/recipes/new">Add Recipe</a>
     <ul>
-      <% if (recipes && recipes.length) { %>
-        <% recipes.forEach((recipe) => { %>
-          <li>
-            <a href="/users/<%= user._id %>/recips/<%= recipe._id %>">
-              <p><%= recipe.title %></p> <!-- Display recipe name -->
-            </a>
-          </li>
-        <% }); %>
-      <% } else { %>
-        <li>No recipes found.</li>
-      <% } %>
+      <% recipes.forEach((recipe) => { %>
+      <li>
+        <a href="/users/<%= user._id %>/recipes/<%= recipe._id%>">
+          <p>
+            <%= `${recipe.title}`%> 
+          </p>
+          </p>
+            
+        </a>
+      </li>
+      <% }) %>
     </ul>
-</body>
+  </body>
 </html>

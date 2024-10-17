@@ -4,24 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Recipe</title>
-    <link rel="stylesheet" href="/stylesheet/style.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 <body>
     <%- include('../partials/_navbar.ejs') %>
     <h1>Edit Recipe</h1>
-    <form action="/users/<%= user._id %>/recipe/<%= recipe._id %>/?_method=PUT" method="POST"></form>
+    <form action="/users/<%= user._id %>/recipes" method="POST"></form>
     <label for="title">Title</label>
     <input type="text" name="title" id="title" value="<%= recipes.title %>"/>
-    <label for="ingrediac">Ingrediac</label>
-    <inpyt type="text" name ="ingrediac" id="ingrediac" value="<%= recipes.ingrediac %>"/>
+    <label for="ingrediace">ingrediace</label>
+    <inpyt type="text" name ="ingrediace" id="ingrediace" value="<%= recipes.ingrediace %>"/>
     <label for="instructions">Instructions</label>
-    <inpu type="text" name="instructions" id="instructions" value="<%= recipes.instructions %>" />
+    <input type="text" name="instructions" id="instructions" value="<%= recipes.instructions %>" />
        
   
         <label for="notes">Notes</label>
-        <textarea type="text" name="notes" id="notes">
-          <%= resipes.notes %>    
-      </textarea>
+        <input type="text" name="notes" id="notes" value="<%= recipes.notes"/>
+           
+     
       <button type="submit">Edit Recipe</button>
 </body>
 </html>
