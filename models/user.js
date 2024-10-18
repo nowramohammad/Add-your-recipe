@@ -18,6 +18,10 @@ const recipeSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+   image:{
+    type: String,
+    required: true,
+   }
 });
 /*
 const userSchema: mongoose.Schema<any, mongoose.Model<any, any, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, {

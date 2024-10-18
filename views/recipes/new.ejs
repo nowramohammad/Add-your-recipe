@@ -11,6 +11,7 @@
     <%- include('../partials/_navbar.ejs') %>
     <h1>Add a new Recipe</h1>
     <form action="/users/<%= user._id %>/recipes" method="POST">
+       
         <label for="title">Title</label>
         <input type="text" name="title" id="title" />
   
@@ -21,7 +22,9 @@
   
         <label for="notes">Notes</label>
         <textarea type="text" name="notes" id="notes"> </textarea>
+
         <button type="submit">Add Recipe</button>
       </form>
+     
 </body>
 </html>

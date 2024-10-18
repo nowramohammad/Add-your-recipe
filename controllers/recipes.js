@@ -3,7 +3,15 @@ const router = express.Router();
 // import any models here
 const User = require("../models/user.js");
 
-// Index
+
+
+
+
+
+
+
+
+// index for the pages 
 router.get("/", async (req, res) => {
   
   const user = await User.findById(req.session.user._id);
@@ -15,7 +23,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// New
+//creat recipe add new recipe
 router.get("/new", (req, res) => {
   res.render("recipes/new.ejs");
 });
@@ -24,7 +32,7 @@ router.put("/:recipeId", async (req, res) => {
   try {
     const currentUser = await User.findById(req.session.user._id);
     const recipe = currentUser.recipes.id(req.params.recipeId);
-    // call set on subdocument to update it
+  
     recipe.set(req.body);
 
     await currentUser.save();
@@ -37,14 +45,14 @@ router.put("/:recipeId", async (req, res) => {
   }
 });
 
-// Delete
+// delete thr recipe page 
 
 router.delete("/:recipeId", async (req, res) => {
   try {
     const currentUser = await User.findById(req.session.user._id);
-    // find and delete application by application id
+    
     currentUser.recipes.id(req.params.recipeId).deleteOne();
-    // save updated user w/ deleted application to db
+   
     await currentUser.save();
 
     res.redirect(`/users/${req.session.user._id}/recipes`);
@@ -57,7 +65,7 @@ router.delete("/:recipeId", async (req, res) => {
 router.post("/", async (req, res) => {
   try {
     const currentUser = await User.findById(req.session.user._id);
-    //req.body == all recipe
+   
     currentUser.recipes.push(req.body);
     
 
@@ -68,19 +76,25 @@ router.post("/", async (req, res) => {
     res.redirect("/");
   }
 });
-// Edit
+// Edit the page recipe 
 router.get("/:recipeId/edit", async (req, res) => {
   const currentUser = await User.findById(req.session.user._id);
   const recipe = currentUser.recipes.id(req.params.recipeId);
   res.render("recipes/edit.ejs", { recipe });
 });
 
-//SHOW
+//SHOW recipe page once edit 
 router.get("/:recipeId", async (req, res) => {
   const currentUser = await User.findById(req.session.user._id);
-  // .id is a mongoose method to find a subdocument by its id
+  
   const recipe = currentUser.recipes.id(req.params.recipeId);
 
   res.render("recipes/show.ejs", { recipe });
 });
+
+
+
+
+
+
 module.exports = router;

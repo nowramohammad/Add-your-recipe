@@ -2,21 +2,32 @@
   background-image: url("../images/IMG_1198.JPG");
   background-size: cover;
 }
-input, textarea {
-  width: 100%;
-  padding: 10px;
-  margin: 5px 0;
-}
+
+
 button {
   background-color: rgb(232, 170, 191);
   color: black;
 }
+
+input[type="text"]{
+  width: 200%;
+padding: 30px;
+margin: 10px 0;
+background-color: antiquewhite;
+outline: none;
+}
+input[type="username"],
+input[type="password"] {
+  background-color: lavender;
+}
+
+
 p {
-  color: rgb(240, 25, 90);
+  color: rgb(2, 63, 4);
 }
 h1{
   color: darkcyan;
-  
+
 }
 @media (max-width: 500px){
  body{
