@@ -25,6 +25,13 @@
     <p>Notes: <%= recipe.notes %>
   </p>
     <% } %> 
+    <% if (recipe.image) { %>
+      <p>Image:</p>
+      <img src="<%= recipe.image %>" alt="Recipe Image" style="max-width: 100%; height: auto;">
+  <% } else { %>
+      <p>No image available.</p>
+  <% } %>
+
 
     <a href="/users/<%= user._id %>/recipes/<%= recipe._id %>/edit"
       >Edit</a

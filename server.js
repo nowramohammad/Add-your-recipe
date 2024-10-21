@@ -72,6 +72,35 @@ app.use("/users/:userId/recipes", recipeController);
 app.use(express.urlencoded({ extended: true })); // For URL-encoded data
 app.use(express.json());
 
+app.post('/users/:userId/recipes', (req, res) => {
+  const { title, ingredients, instructions, image } = req.body;
+
+  if (!image) {
+      return res.status(400).json({ message: 'Image is required' });
+  }
+
+  const newRecipe = { title, ingredients, instructions, image };
+
+  User.findByIdAndUpdate(req.params.userId, { $push: { recipes: newRecipe } }, { new: true })
+      .then(user => {
+          if (!user) {
+              return res.status(404).json({ message: 'User not found' });
+          }
+          res.status(201).json(user);
+      })
+      .catch(err => {
+          console.error(err);
+          res.status(500).json({ message: 'Error saving recipe', error: err });
+      });
+});
+
+app.delete("/recipes/:id", (req, res) => {
+ 
+  Recipe.findByIdAndDelete(req.params.id).then((responseFromDb) => {
+    console.log(responseFromDb);
+    res.redirect("/recipes");
+  });
+});
 
 
 

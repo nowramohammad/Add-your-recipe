@@ -1,6 +1,7 @@
 * body{
   background-image: url("../images/IMG_1198.JPG");
   background-size: cover;
+justify-content: center;
 }
 
 
@@ -10,24 +11,34 @@ button {
 }
 
 input[type="text"]{
-  width: 200%;
-padding: 30px;
+  display:inline-flex;
+background-color: rgb(247, 203, 145);
+width: 50%; 
 margin: 10px 0;
-background-color: antiquewhite;
-outline: none;
+border-radius: 5px;
+box-sizing: content-box;
+
 }
 input[type="username"],
 input[type="password"] {
   background-color: lavender;
-}
 
+
+}
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+
+}
 
 p {
   color: rgb(2, 63, 4);
+  display: block;
 }
 h1{
-  color: darkcyan;
-
+  color: rgb(14, 66, 236);
+text-align: center;
 }
 @media (max-width: 500px){
  body{

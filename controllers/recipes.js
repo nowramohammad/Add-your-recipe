@@ -65,7 +65,7 @@ router.delete("/:recipeId", async (req, res) => {
 router.post("/", async (req, res) => {
   try {
     const currentUser = await User.findById(req.session.user._id);
-   
+   console.log(req.body);
     currentUser.recipes.push(req.body);
     
 
