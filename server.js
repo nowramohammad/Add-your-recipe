@@ -11,9 +11,16 @@ const passUserToView = require("./middleware/pass-user-to-view.js");
 const recipeController = require("./controllers/recipes.js");
 const path = require("path");
 
+//let comments = [];
+
+
 const authController = require("./controllers/auth.js");
 
 const port = process.env.PORT ? process.env.PORT : "3000";
+
+
+
+
 
 mongoose.connect(process.env.MONGODB_URI);
 
@@ -69,7 +76,7 @@ app.use("/users/:userId/recipes", recipeController);
 
 
 
-app.use(express.urlencoded({ extended: true })); // For URL-encoded data
+app.use(express.urlencoded({ extended: true })); 
 app.use(express.json());
 
 app.post('/users/:userId/recipes', (req, res) => {
@@ -94,6 +101,17 @@ app.post('/users/:userId/recipes', (req, res) => {
       });
 });
 
+/*app.post('/recipe/:id/comments', (req, res) => {
+  const newComment = {
+      text: req.body.comment,
+      author: 'User' // You can customize this to get the actual user's name
+  };
+  comments.push(newComment); // Add the comment to the comments array
+  res.redirect(`/recipe/${req.params.id}`); // Redirect back to the recipe page
+});
+*/
+
+
 app.delete("/recipes/:id", (req, res) => {
  
   Recipe.findByIdAndDelete(req.params.id).then((responseFromDb) => {
@@ -101,7 +119,7 @@ app.delete("/recipes/:id", (req, res) => {
     res.redirect("/recipes");
   });
 });
-
+app.use('images', express.static(path.join(__dirname, 'public/images')));
 
 
 app.listen(port, () => {

@@ -2,8 +2,14 @@
   background-image: url("../images/IMG_1198.JPG");
   background-size: cover;
 justify-content: center;
-}
 
+}
+.auth-box {
+  display: flex;
+  border: 2px solid; 
+  border-radius: 5px;
+
+}
 
 button {
   background-color: rgb(232, 170, 191);
@@ -15,7 +21,7 @@ input[type="text"]{
 background-color: rgb(247, 203, 145);
 width: 50%; 
 margin: 10px 0;
-border-radius: 5px;
+border-radius: 20px;
 box-sizing: content-box;
 
 }
@@ -35,11 +41,13 @@ label {
 p {
   color: rgb(2, 63, 4);
   display: block;
+
 }
 h1{
-  color: rgb(14, 66, 236);
+  color: rgb(236, 55, 116);
 text-align: center;
 }
+
 @media (max-width: 500px){
  body{
   max-width: 200px;
